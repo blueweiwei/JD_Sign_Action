@@ -1,8 +1,8 @@
-# 基于github action的京东自动化签到
+# 基于github action的JD自动化签到
 
 ## 介绍
 
-> 使用NobyDa “京东多合一签到脚本”为基础，移植到github actions自动化执行。
+> 使用NobyDa “JD多合一签到脚本”为基础，移植到github actions自动化执行。
 
 
 ## 触发方式
@@ -18,7 +18,7 @@
 >>
 >>2、定时任务的时间是UTC时间，跟中国时间有8小时的时差。
 > 
->  **问题二：京东Cookie的有效期**
+>  **问题二：JDCookie的有效期**
 > 
 > >就我自己项目中的使用情况而言，一个月有效期。
 
@@ -26,7 +26,7 @@
 
 ## 使用用法
 * 点击右上角 `Fork` 项目；
-* `Settings` -> `Secrets` 中添加京东Cookie、Server酱SCKEY；
+* `Settings` -> `Secrets` 中添加JDCookie、Server酱SCKEY；
 	- `JD_COOKIE`：账号1Cookie
 	- `JD_DUAL_COOKIE`：账号2Cookie(选填)
 	- `PUSH_KEY`：Server酱SCKEY
@@ -34,13 +34,13 @@
 * 当任务运行完成时，会将运行结果和错误信息打包到`Artifacts`，可自行下载查看；
 * 如果配置了Server酱，运行结果会推送到微信；
 
-## 获取京东cookie
+## 获取JDcookie
 
 * 使用项目中的Chrome插件：`JDCookie`；
 * Chrome中拓展程序开启`开发者模式`；
 * 点击`加载已解压的拓展程序`，选择`JDCookie`目录；
 * 登录[领京豆](https://bean.m.jd.com/)；
-* 点击`JDCookie`即可拷贝京东cookie；
+* 点击`JDCookie`即可拷贝JDcookie；
 
 ## 获取Server酱SCKEY
 
