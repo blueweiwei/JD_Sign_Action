@@ -1,6 +1,6 @@
 # 基于github action的JD自动化签到
 
-## 介绍:
+## 介绍:1
 
 > 使用NobyDa “JD多合一签到脚本”为基础，移植到github actions自动化执行。
 
