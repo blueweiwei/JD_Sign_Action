@@ -10,7 +10,7 @@ const download = require('download')
 // 京东Cookie
 const cookie = process.env.JD_COOKIE
 // 京东Cookie
-const dual_cookie = false
+const dual_cookie = process.env.JD_DUAL_COOKIE
 // Server酱SCKEY
 const push_key = process.env.PUSH_KEY
 
@@ -55,9 +55,9 @@ function dateFormat() {
 function setupCookie() {
   var js_content = fs.readFileSync(js_path, 'utf8')
   js_content = js_content.replace(/var Key = ''/, `var Key = '${cookie}'`)
-//   if (false) {
-//     js_content = js_content.replace(/var DualKey = ''/, `var DualKey = '${dual_cookie}'`)
-//   }
+  if (dual_cookie) {
+    js_content = js_content.replace(/var DualKey = ''/, `var DualKey = '${dual_cookie}'`)
+  }
   fs.writeFileSync(js_path, js_content, 'utf8')
 }
 
@@ -71,14 +71,13 @@ function sendNotificationIfNeed() {
     console.log('没有执行结果，任务中断!'); return;
   }
 
-  let title = "京东签到_" + dateFormat();
-  let con = fs.readFileSync(result_path, "utf8")
-  let tomail='3151351506@qq.com'
+  let text = "京东签到_" + dateFormat();
+  let desp = fs.readFileSync(result_path, "utf8")
 
   // 去除末尾的换行
   let SCKEY = push_key.replace(/[\r\n]/g,"")
 
-  const options ={
+   const options ={
     uri:  `http://123.60.0.184:81/obj/email/`,
     form: { tomail, title, con },
     json: true,
@@ -86,9 +85,8 @@ function sendNotificationIfNeed() {
   }
 
   rp.post(options).then(res=>{
-    const code = res['errno'];
-    console.log(res);
-    if (code == 0) {
+    const code = res[0];
+    if (code == 200) {
       console.log("通知发送成功，任务结束！")
     }
     else {
