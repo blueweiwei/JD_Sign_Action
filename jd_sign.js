@@ -55,7 +55,7 @@ function dateFormat() {
 function setupCookie() {
   var js_content = fs.readFileSync(js_path, 'utf8')
   js_content = js_content.replace(/var Key = ''/, `var Key = '${cookie}'`)
-  if (dual_cookie) {
+  if (false) {
     js_content = js_content.replace(/var DualKey = ''/, `var DualKey = '${dual_cookie}'`)
   }
   fs.writeFileSync(js_path, js_content, 'utf8')
