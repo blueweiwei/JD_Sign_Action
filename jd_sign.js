@@ -87,12 +87,13 @@ function sendNotificationIfNeed() {
 
   rp.post(options).then(res=>{
     const code = res['errno'];
+    console.log(res);
     if (code == 0) {
       console.log("通知发送成功，任务结束！")
     }
     else {
       console.log(res);
-      console.log("通知发送失败，任务中断！")
+      console.log("通知发送失败，任务中断！123")
       fs.writeFileSync(error_path, JSON.stringify(res), 'utf8')
     }
   }).catch((err)=>{
